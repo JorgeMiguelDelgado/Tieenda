@@ -13,9 +13,10 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        
-        $productos= Producto::All();
-        return view('Principal.Principal', compact('productos'));
+  return view('producto.index', [
+    'productos'=>Producto::get()
+
+  ]);      
     }
 
     /**
@@ -23,11 +24,11 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Producto $producto)
     {
-        
-        $producto= Producto::get();
-        return view('Principal.create');
+        return view('producto.create', [
+            'producto' => new Producto
+        ]);
     }
 
     /**
@@ -37,35 +38,21 @@ class ProductoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store()
     {
-
-        Producto::create(request()->all());
-        return redirect()->route('producto');
      
-        $producto=new Producto;
-        if($request->hashFile('avatar')){
-            $file = $request->file('avatar');
-            $name = time().$file->getClientOriginalName();
-            $file->move(public_path().'/images/',$name);
-        }
-
-        $producto->avatar =$name;
-        $producto->slug=time().$request->input('name');
-        $producto->save();
-
+       
+        $fields=request()->validate([
+            'nombre'=>'required',
+            'descripcion'=>'required',
+            'precio'=>'required',
+            'cantidad'=>'required',
+           
+            
+        ]);
         
-     /*   $entrada=$request->all();
-        if($archivo=$request->file('file')){
-            $nombre=$archivo->getClientOriginalName();
-            $archivo->move('images', $nombre);
-            $entrada['file']=$nombre;
-        }
-        Producto::create($entrada);
-        
-        return redirect()->route('producto');
-       */
-
+        Producto::create($fields);
+        return redirect()->route('producto.index')->with('status','Registro Exitoso.');
     }
 
     /**
@@ -76,7 +63,6 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
-        return view('producto.show',compact('producto'));
     }
 
     /**
@@ -85,9 +71,11 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Producto $producto)
     {
-        //
+        return view('producto.edit',[
+            'producto'=>$producto
+        ]);
     }
 
     /**
@@ -97,18 +85,17 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Producto $producto)
     {
-        $producto->fill($requesst-except('avatar'));
-        if($request->hasFile('avatar')){
-            $file= $request->file('avatar');
-            $name=time().$file->getClientOriginalName();
-            $teacher->avatar= $name;
-            $file->move(public_path().'/images/', $name);
 
-        }
-        $producto->save();
-        return 'Updated';
+        $fields= request()->validate([
+            'nombre'=>'required',
+            'descripcion'=>'required',
+            'precio'=>'required',
+            'cantidad'=>'required',
+        ]);
+        $producto->update($fields);
+        return redirect()->route('producto.index')->with('status','Editado con éxito');
 
     }
 

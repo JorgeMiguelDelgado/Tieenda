@@ -79,7 +79,7 @@ h1 {
 </style>
 
 <h1>Lista de dispositivos en venta</h1>
-<button type="button" class="btn btn-outline-primary"><a class="nav-link" href="/Principal/create">Nuevo Producto</a></button>
+<button type="button" class="btn btn-outline-primary"><a class="nav-link" href="{{ route('producto.create') }}">Nuevo Producto</a></button>
     
         
 
@@ -102,7 +102,8 @@ h1 {
                 <td>{{$producto->descripcion}} </td>
                 <td>{{$producto->precio}}</td>
                 <td>{{$producto->cantidad}}</td>
-                <td>{{$producto->file}}</td>
+                <td> <a href="{{ route('producto.edit', $producto) }}" class="btn btn-warning">Editar</a>                    
+                       </td>
              <!--   <td> <img src="images/{{$producto->ruta}}" alt="" width="150">-->
             </tr>
            @endforeach
@@ -117,7 +118,7 @@ h1 {
 
     <div class="row">
     @foreach($productos as $producto)
-  <div class="column nature">
+<div class="column nature">
   
   <div class="content">
     

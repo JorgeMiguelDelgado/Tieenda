@@ -6,7 +6,7 @@
 <small class="text-muted">Registro de Nuevos productos</small>
     </h1>
     <div class="container">
-        <form class="form-group" file="true" method="POST" action="{{route('Producto.store')}}">
+        <form class="form-group" method="POST" action="{{ route('producto.store') }}">
             @csrf
             <div class="form-group row">
                 <label for="nombre"  class="col-sm-2 col-form-label">Nombre:</label>
@@ -30,11 +30,6 @@
                 <label for="cantidad" class="col-sm-2 col-form-label">Cantidad</label>
                 <div class="col-sm-10">
                     <input name="cantidad" type="text" class="form-control" placeholder="Cnatidad de productos">
-                </div>
-            </div> 
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <input name="file" type="file" class="form-control">
                 </div>
             </div> 
             <button type="submit" class="btn btn-outline-primary">Guardar</button> 

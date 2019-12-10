@@ -101,7 +101,9 @@
 @extends('layout.layout')
 @section('title','GeorgeStore')
 @section('titulo','Hmmmm izi')
-
+<li class="nav-item">
+                        <a class="nav-link" href="{{route('producto.index')}}">Productos</a>
+                    </li>
 @if (Route::has('login'))
 
             @auth
