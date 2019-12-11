@@ -79,7 +79,7 @@ h1 {
 </style>
 
 <h1>Lista de dispositivos en venta</h1>
-<button type="button" class="btn btn-outline-primary"><a class="nav-link" href="{{ route('producto.create') }}">Nuevo Producto</a></button>
+<button type="button" class="btn btn-outline-primary"><a class="nav-link" href="{{ route('venta.create') }}">Nuevo Producto</a></button>
     
         
 
@@ -87,22 +87,19 @@ h1 {
         <thead>
             <tr>
                 <th scope="col">id</th>
-                <th scope="col">nombre</th>
-                <th scope="col">Descripcion</th>
+                <th scope="col">Nombre</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Cantidad</th>
-                <th scope="col">Imagen</th>  
             </tr>
         </thead>
         <tbody>
-        @foreach($productos as $producto)
+        @foreach($ventas as $venta)
             <tr>
-            <th scope="row">{{$producto->id}}</th>
-                <td> {{$producto->nombre}} </td>
-                <td>{{$producto->descripcion}} </td>
-                <td>{{$producto->precio}}</td>
-                <td>{{$producto->cantidad}}</td>
-                <td> <a href="{{ route('producto.edit', $producto) }}" class="btn btn-warning">Editar</a>                    
+            <th scope="row">{{$venta->id}}</th>
+                <td> {{$venta->nombre}} </td>
+                <td>{{$venta->precio}}</td>
+                <td>{{$venta->cantidad}}</td>
+                <td> <a href="{{ route('venta.edit', $venta) }}" class="btn btn-warning">Editar</a>                    
                        </td>
              <!--   <td> <img src="images/{{$producto->ruta}}" alt="" width="150">-->
             </tr>
@@ -117,16 +114,15 @@ h1 {
 
 
     <div class="row">
-    @foreach($productos as $producto)
+    @foreach($ventas as $venta)
 <div class="column nature">
   
   <div class="content">
     
     <!--  <img src="/w3images/mountains.jpg" alt="{{$producto->file}}" style="width:100%">-->
-      <h4>{{$producto->nombre}}</h4>
-      <p>{{$producto->descripcion}}</p>
-      <p>{{$producto->precio}}</p>
-      <p>{{$producto->cantidad}}</p>
+      <h4>{{$venta->nombre}}</h4>
+      <p>{{$venta->precio}}</p>
+      <p>{{$venta->cantidad}}</p>
     </div>
     </div>
   @endforeach

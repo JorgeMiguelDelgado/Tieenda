@@ -18,5 +18,8 @@ Route::resource('/Perfil', 'PerfilController');
 Route::resource('/Soporte', 'SoporteController');
 
 Route::resource('producto','ProductoController')->names('producto')->middleware('auth');
+Route::resource('venta','VentaController')->names('venta')->middleware('auth');
 Auth::routes();
 
+Route::view('/contact', 'contact')->name('contact');
+Route::post('contact','MessageController@store');

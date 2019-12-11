@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Producto;
-class ProductoController extends Controller
+use App\Venta;
+class VentaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-  return view('producto.index', [
-    'productos'=>Producto::get()
+  return view('venta.index', [
+    'ventas'=>Venta::get()
 
   ]);      
     }
@@ -24,10 +24,10 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Producto $producto)
+    public function create(Venta $venta)
     {
-        return view('producto.create', [
-            'producto' => new Producto
+        return view('venta.create', [
+            'venta' => new Venta
         ]);
     }
 
@@ -51,8 +51,8 @@ class ProductoController extends Controller
             
         ]);
         
-        Producto::create($fields);
-        return redirect()->route('producto.index')->with('status','Registro Exitoso.');
+        Venta::create($fields);
+        return redirect()->route('venta.index')->with('status','Registro Exitoso.');
     }
 
     /**
@@ -71,10 +71,10 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit(Venta $venta)
     {
-        return view('producto.edit',[
-            'producto'=>$producto
+        return view('venta.edit',[
+            'venta'=>$venta
         ]);
     }
 
@@ -85,7 +85,7 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Producto $producto)
+    public function update(Venta $venta)
     {
 
         $fields= request()->validate([
@@ -94,8 +94,8 @@ class ProductoController extends Controller
             'precio'=>'required',
             'cantidad'=>'required',
         ]);
-        $producto->update($fields);
-        return redirect()->route('producto.index')->with('status','Editado con éxito');
+        $venta->update($fields);
+        return redirect()->route('venta.index')->with('status','Editado con éxito');
 
     }
 

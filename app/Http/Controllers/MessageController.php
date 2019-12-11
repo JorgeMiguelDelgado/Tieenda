@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Producto;
-class ProductoController extends Controller
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MessageReceived;
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,10 +14,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-  return view('producto.index', [
-    'productos'=>Producto::get()
-
-  ]);      
+        //
     }
 
     /**
@@ -24,11 +22,9 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Producto $producto)
+    public function create()
     {
-        return view('producto.create', [
-            'producto' => new Producto
-        ]);
+        //
     }
 
     /**
@@ -37,22 +33,20 @@ class ProductoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-    public function store()
+    public function store(Request $request)
     {
-     
-       
-        $fields=request()->validate([
-            'nombre'=>'required',
-            'descripcion'=>'required',
-            'precio'=>'required',
-            'cantidad'=>'required',
-           
-            
+     $message=request()->validate([
+            'name'=>'required',
+            'email'=>'required|email',
+            'subject'=>'required',
+            'content'=>'required|min:3',
+        ],[
+            'name.required'=>__('Necesito tu nombre')
         ]);
+
+            Mail :: to('delgadojoorge@gmail.com')->queue(new MessageReceived($message));
         
-        Producto::create($fields);
-        return redirect()->route('producto.index')->with('status','Registro Exitoso.');
+            return 'Mensaje enviado';
     }
 
     /**
@@ -63,6 +57,7 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**
@@ -71,11 +66,9 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit($id)
     {
-        return view('producto.edit',[
-            'producto'=>$producto
-        ]);
+        //
     }
 
     /**
@@ -85,18 +78,9 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Producto $producto)
+    public function update(Request $request, $id)
     {
-
-        $fields= request()->validate([
-            'nombre'=>'required',
-            'descripcion'=>'required',
-            'precio'=>'required',
-            'cantidad'=>'required',
-        ]);
-        $producto->update($fields);
-        return redirect()->route('producto.index')->with('status','Editado con éxito');
-
+        //
     }
 
     /**

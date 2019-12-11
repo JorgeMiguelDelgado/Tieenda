@@ -50,6 +50,7 @@ li a:hover:not(.active) {
     <li><a href="{{ route('register') }}">@yield('Registro')</a></li>
     <li><a href="{{ route('login') }}">@yield('Login')</a></li>
     <li><a href="#">@yield('perfil')</a></li>
+    <li><a href=""></a></li>
     
     </ul>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
