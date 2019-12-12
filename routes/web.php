@@ -17,9 +17,12 @@ Route::get('/', function () {
 Route::resource('/Perfil', 'PerfilController');
 Route::resource('/Soporte', 'SoporteController');
 
-Route::resource('producto','ProductoController')->names('producto')->middleware('auth');
+Route::resource('producto','ProductoController')->names('producto');
 Route::resource('venta','VentaController')->names('venta')->middleware('auth');
 Auth::routes();
 
 Route::view('/contact', 'contact')->name('contact');
 Route::post('contact','MessageController@store');
+
+Route::get('/redirect/{provider}','SocialController@redirect');
+Route::get('/callback/{provider}','SocialController@callback');

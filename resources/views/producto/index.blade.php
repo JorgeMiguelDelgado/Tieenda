@@ -58,6 +58,9 @@ h1 {
 .show {
   display: block;
 }
+.gg{
+  display: block;
+}
 
 /* Style the buttons */
 .btn {

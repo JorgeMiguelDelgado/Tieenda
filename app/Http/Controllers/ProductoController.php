@@ -40,9 +40,7 @@ class ProductoController extends Controller
 
     public function store()
     {
-     
-       
-        $fields=request()->validate([
+      $fields=request()->validate([
             'nombre'=>'required',
             'descripcion'=>'required',
             'precio'=>'required',
@@ -53,7 +51,7 @@ class ProductoController extends Controller
         
         Producto::create($fields);
         return redirect()->route('producto.index')->with('status','Registro Exitoso.');
-    }
+       }
 
     /**
      * Display the specified resource.

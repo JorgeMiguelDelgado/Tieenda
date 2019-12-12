@@ -30,6 +30,7 @@ class MessageReceived extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.message-received');
+        
+        return $this->view('mail.message-received')->with('toast_success','Mensaje Enviado');
     }
 }
