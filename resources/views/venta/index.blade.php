@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layouts.layout')
 @section('title','Pagina Principal')
 
 @section('contenido')
@@ -77,11 +77,12 @@ h1 {
   color: white;
 }
 </style>
+<br>
+<br>
+<br>
+<br>
+<h1>Lista de pedidos </h1>
 
-<h1>Lista de dispositivos en venta</h1>
-<button type="button" class="btn btn-outline-primary"><a class="nav-link" href="{{ route('venta.create') }}">Nuevo Producto</a></button>
-    
-        
 
     <table class="table table-dark">
         <thead>
@@ -98,10 +99,8 @@ h1 {
             <th scope="row">{{$venta->id}}</th>
                 <td> {{$venta->nombre}} </td>
                 <td>{{$venta->precio}}</td>
-                <td>{{$venta->cantidad}}</td>
-                <td> <a href="{{ route('venta.edit', $venta) }}" class="btn btn-warning">Editar</a>                    
+                <td>{{$venta->cantidad}}</td>                    
                        </td>
-             <!--   <td> <img src="images/{{$producto->ruta}}" alt="" width="150">-->
             </tr>
            @endforeach
         </tbody>
@@ -109,7 +108,6 @@ h1 {
     <h2>PORTFOLIO</h2>
 
 <div id="myBtnContainer">
-  <li> <a class="active" onclick="filterSelection('all')"> Productos</a></li>
 </div>
 
 
@@ -119,7 +117,6 @@ h1 {
   
   <div class="content">
     
-    <!--  <img src="/w3images/mountains.jpg" alt="{{$producto->file}}" style="width:100%">-->
       <h4>{{$venta->nombre}}</h4>
       <p>{{$venta->precio}}</p>
       <p>{{$venta->cantidad}}</p>

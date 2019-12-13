@@ -12,13 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 Route::resource('/Perfil', 'PerfilController');
 Route::resource('/Soporte', 'SoporteController');
 
 Route::resource('producto','ProductoController')->names('producto');
 Route::resource('venta','VentaController')->names('venta')->middleware('auth');
+Route::resource('categoria', 'CategoriaController')->names('categoria');
 Auth::routes();
 
 Route::view('/contact', 'contact')->name('contact');

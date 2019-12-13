@@ -1,8 +1,12 @@
-@extends('layout.layout')
+@extends('layouts.layout')
 @section('title','Atencion al cliente')
 @section('ntitle','Rellene el siguiente formulario')
 @section('contenido')
-<h1>CONTACT</h1>
+<br>
+<br>
+<br>
+<center>
+<h1>Atención al cliente</h1>
 
  <form action="{{ route('contact') }}" method="POST">
  @csrf
@@ -19,4 +23,5 @@
 {!! $errors->first('content', '<small>:message</small><br>')!!}
 <button>Enviar</button>
  </form>
+ </center>
 @endsection

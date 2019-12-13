@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Producto;
+use App\Categoria;
+use App\User;
 class ProductoController extends Controller
 {
     /**
@@ -14,9 +16,11 @@ class ProductoController extends Controller
     public function index()
     {
   return view('producto.index', [
-    'productos'=>Producto::get()
+    'productos'=>Producto::get(),
+    'categorias'=>Categoria::get(),
+    'users'=>User::get()
 
-  ]);      
+    ]);      
     }
 
     /**
@@ -24,10 +28,11 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Producto $producto)
+    public function create()
     {
         return view('producto.create', [
-            'producto' => new Producto
+            'categorias' => Categoria::get(),
+            'users'=>User::get()
         ]);
     }
 
@@ -41,11 +46,15 @@ class ProductoController extends Controller
     public function store()
     {
       $fields=request()->validate([
-            'nombre'=>'required',
-            'descripcion'=>'required',
-            'precio'=>'required',
-            'cantidad'=>'required',
-           
+        'codigo'=>'required',
+        'nombre'=>'required',
+        'cantidad'=>'required',
+        'id_categoria'=>'required',
+        'id_usuario'=>'required',
+        'descripcion'=>'required',
+        'imagen'=>'required',
+        'estado'=>'required'
+        
             
         ]);
         
@@ -72,7 +81,9 @@ class ProductoController extends Controller
     public function edit(Producto $producto)
     {
         return view('producto.edit',[
-            'producto'=>$producto
+            'producto'=>$producto,
+            'categorias'=>Categoria::get(),
+            'users'=>User::get(),
         ]);
     }
 
@@ -87,10 +98,14 @@ class ProductoController extends Controller
     {
 
         $fields= request()->validate([
+            'codigo'=>'required',
             'nombre'=>'required',
-            'descripcion'=>'required',
-            'precio'=>'required',
             'cantidad'=>'required',
+            'id_categoria'=>'required',
+            'descripcion'=>'required',
+            'imagen'=>'required',
+            'estado'=>'required',
+            
         ]);
         $producto->update($fields);
         return redirect()->route('producto.index')->with('status','Editado con éxito');

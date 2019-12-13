@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Venta;
-class VentaController extends Controller
+use App\Categoria;
+
+class CategoriaController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,10 +17,9 @@ class VentaController extends Controller
      */
     public function index()
     {
-  return view('venta.index', [
-    'ventas'=>Venta::get()
-
-  ]);      
+        return view('categoria.index', [
+            'categorias' => Categoria::get()
+        ]);
     }
 
     /**
@@ -24,10 +27,10 @@ class VentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Venta $venta)
+    public function create()
     {
-        return view('venta.create', [
-            'venta' => new Venta
+        return view('categoria.create', [
+            'categoria' => new Categoria
         ]);
     }
 
@@ -37,22 +40,15 @@ class VentaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     public function store()
     {
-     
-       
-        $fields=request()->validate([
-            'nombre'=>'required',
-            'descripcion'=>'required',
-            'precio'=>'required',
-            'cantidad'=>'required',
-           
-            
+        $fields = request()->validate([
+            'tipo' => 'required'
         ]);
-        
-        Venta::create($fields);
-        return redirect()->route('venta.index')->with('status','Registro Exitoso.');
+
+        Categoria::create($fields);
+
+        return redirect()->route('categoria.index')->with('status','Registro exitoso');
     }
 
     /**
@@ -63,7 +59,7 @@ class VentaController extends Controller
      */
     public function show($id)
     {
-    }
+     }
 
     /**
      * Show the form for editing the specified resource.
@@ -71,10 +67,10 @@ class VentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Venta $venta)
+    public function edit(Categoria $categoria)
     {
-        return view('venta.edit',[
-            'venta'=>$venta
+        return view('categoria.edit', [
+            'categoria' => $categoria
         ]);
     }
 
@@ -85,18 +81,15 @@ class VentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Venta $venta)
+    public function update(Categoria $categoria)
     {
-
-        $fields= request()->validate([
-            'nombre'=>'required',
-            'descripcion'=>'required',
-            'precio'=>'required',
-            'cantidad'=>'required',
+        $fields = request()->validate([
+            'tipo' => 'required'
         ]);
-        $venta->update($fields);
-        return redirect()->route('venta.index')->with('status','Editado con éxito');
 
+        $categoria->update($fields);
+
+        return redirect()->route('categoria.index')->with('status','Editado con éxito.');
     }
 
     /**
@@ -107,6 +100,5 @@ class VentaController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 }

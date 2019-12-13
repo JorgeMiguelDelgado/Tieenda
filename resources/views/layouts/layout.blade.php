@@ -31,6 +31,13 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
 }
+a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
 
 li a:hover:not(.active) {
   background-color: #111;
@@ -44,11 +51,20 @@ li a:hover:not(.active) {
 <body>
 <ul>
     <li><a class="active" href="#">GEORGESTORE</a></li>
-    <li><a  href="{{ url('/') }}">Inicio</a></li>
-    <li><a href="#">Listas</a></li>
-    <li><a href="#">Soporte</a></li>
-    <li><a href="{{ route('register') }}">@yield('Registro')</a></li>
-    <li><a href="{{ route('login') }}">@yield('Login')</a></li>
+    <li><a  href="{{ url('/producto') }}">Inicio</a></li>
+    <li><a  href="{{ url('/producto/create') }}">Ofrecer un producto</a></li>
+    <li><a href="http://lolapi.test">League Of Legends</a></li>
+    <li><a href="{{ url('/contact') }}">Soporte</a></li>
+    @auth
+        <li >
+          <a class="nav-link" href="#" onclick="event.preventDefault();
+           document.getElementById('logout-form').submit();">Cerrar sesión</a>             
+        </li>                                                
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('login')}}">Login</a>             
+                        </li>
+                    @endauth
     <li><a href="#">@yield('perfil')</a></li>
     <li><a href=""></a></li>
     
