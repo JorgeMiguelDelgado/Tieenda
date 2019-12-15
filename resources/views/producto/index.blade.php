@@ -82,9 +82,8 @@ h1 {
 </style>
 <br>
 <br>
-<br>
-<h1>Lista de dispositivos en venta</h1>
-   <h2>Productos Disponibles por los diferentes usuarios</h2>
+<h1>Lista de instrumentos en venta</h1>
+   <h2>Instrumentos Disponibles por los diferentes usuarios</h2>
 
 <div id="myBtnContainer">
 </div>
@@ -100,10 +99,10 @@ h1 {
   
   
       <h4>{{$producto->nombre}}</h4>
+      <p><center><img src="images/{{$producto->imagen}}" width="50%" alt=""</center></p>
       
-      <p>{{$producto->imagen}}</p>
       <p><center>{{$producto->descripcion}}</center></p>
-      <p><center>{{$producto->cantidad}}</center></p>
+      <p><strong>Cantidad de instrumentos</strong><center>{{$producto->cantidad}}</center></p>
       
     @foreach($categorias as $categoria)
       @if($producto->id_categoria == $categoria->id)
@@ -112,15 +111,11 @@ h1 {
       @endif
       
   @endforeach
-  @foreach($users as $user)
-      @if($producto->id_usuario == $user->id)
-      <p><strong>Correo Electronico: </strong><center>{{$user->email}}</center></p>
+      <p><strong>Correo Electronico:</strong><center>{{$producto->email}}</center></p>
       
-      @endif
-      
-  @endforeach
      <center class="">
-  <p><a class="active" href="{{route('pedido.index',$producto)}">Reservar</a></p>
+      <p><a class="active" href="mailto:{{$producto->email}}">Haga click para enviar email al dueño del producto</a></p>
+  
   </center>
     </div>
   

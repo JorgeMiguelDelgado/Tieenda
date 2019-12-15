@@ -6,6 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <style>
+   
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
 body {margin:0;
 }
 
@@ -31,7 +63,16 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
 }
+
 a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+input[type=submit], input[type=file]{
+  
   display: block;
   color: white;
   text-align: center;
@@ -55,6 +96,7 @@ li a:hover:not(.active) {
     <li><a  href="{{ url('/producto/create') }}">Ofrecer un producto</a></li>
     <li><a href="http://lolapi.test">League Of Legends</a></li>
     <li><a href="{{ url('/contact') }}">Soporte</a></li>
+    <li><a href="{{url('/edicion')}}">Editar mi producto</a></li>
     @auth
         <li >
           <a class="nav-link" href="#" onclick="event.preventDefault();

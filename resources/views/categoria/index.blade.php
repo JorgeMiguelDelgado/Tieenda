@@ -26,7 +26,7 @@
                 <td>{{$categoria->tipo}}</td>
                 <td>{{$categoria->created_at}}</td>
                 <td>
-                <a href="{{ route('categoria.edit', $categoria) }}" class="btn btn-warning">Editar</a>                    
+                <a href="{{ route('categoria.edit', $categoria) }}" class="active">Editar</a>                    
                 </td>                
             </tr>
             @endforeach
